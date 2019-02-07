@@ -5,7 +5,6 @@ Traefik
 Formulas for working with `Traefik <https://traefik.io>`_
 
 .. note::
-
     See the full `Salt Formulas installation and usage instructions
     <http://docs.saltstack.com/en/latest/topics/development/conventions/formulas.html>`_.
 
@@ -18,17 +17,17 @@ Available states
 ``traefik``
 ------------
 
-Install and configures the Traefik service.
+Install and configure Traefik.
 
 ``traefik.install``
 --------------------
 
-Downloads and installs the Traefik binary file.
+Download and install the Traefik binary file.
 
 ``traefik.config``
 -------------------
 
-Provision the Traefik configuration files and sources.
+Provision the Traefik configuration file.
 
 ``traefik.service``
 -------------------
