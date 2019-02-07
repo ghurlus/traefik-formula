@@ -2,6 +2,7 @@ traefik:
   version: 1.7.8
   user: traefik
   group: traefik
-  bindir: /usr/local/bin
-  configdir: /etc/traefik
-  download_host: github.com
+  bin_dir: /usr/local/bin
+  config_dir: /etc/traefik
+  config_file: traefik.toml
+  wget_opts: '--quiet --tries=2'

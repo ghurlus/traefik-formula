@@ -1,14 +1,16 @@
 traefik:
-
+  # traefik version to download
   version: 1.7.8
-  download_host: github.com
-
+  # proxy urls to download traefik binary
+  https_proxy: ''
+  http_proxy: ''
   # Set user and group for Traefik running service
   user: traefik
   group: traefik
-
-  # target directory to store traefik binary and configuratoin
+  # target directory to store traefik binary and configuration
   bindir: /usr/local/bin
   configdir: /etc/traefik
+  # remember to change files/traefik.toml filename if you change config_file
+  config_file: traefik.toml
 
 # vim: ft=yaml

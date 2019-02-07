@@ -2,7 +2,7 @@
 Traefik
 =======
 
-Formulas for working with `Traefik <https://traefik.io>`_
+Formula to install `Traefik <https://traefik.io>`_
 
 .. note::
     See the full `Salt Formulas installation and usage instructions
@@ -34,3 +34,13 @@ Provision the Traefik configuration file.
 
 Add the Traefik service startup configuration or script to an operating system.
 
+
+``traefik.storeconfig``
+-----------------------
+Store Traefik configuration in a KV store (ex: Consul)
+
+Notes
+=====
+
+- Please adapt files/config.toml to your needs as it is a generic configuration
+- The init service is only compatible with systemd for the moment

@@ -1,14 +1,40 @@
-{%- from "traefik/map.jinja" import traefik with context -%}
 [Unit]
-Description=Traefik reverse proxy
+Description=Traefik
+Documentation=https://docs.traefik.io
 Requires=network-online.target
 After=network-online.target
+AssertFileIsExecutable={{ binfile }}
+AssertPathExists={{ configfile }}
 
 [Service]
-Restart=on-failure
-ExecStart={{ traefik.bindir }}/traefik --configFile={{ traefik.configdir }}/traefik.toml
-User={{ traefik.user }}
-Group={{ traefik.group }}
+Type=notify
+ExecStart={{ binfile }} --configFile={{ configfile }}
+User={{ user }}
+Group={{ group }}
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+Restart=always
+WatchdogSec=1s
+
+# lock down system access
+# prohibit any operating system and configuration modification
+#ProtectSystem=strict
+# create separate, new (and empty) /tmp and /var/tmp filesystems
+#PrivateTmp=true
+# make /home directories inaccessible
+#ProtectHome=true
+# turns off access to physical devices (/dev/...)
+#PrivateDevices=true
+# make kernel settings (procfs and sysfs) read-only
+#ProtectKernelTunables=true
+# make cgroups /sys/fs/cgroup read-only
+#ProtectControlGroups=true
+
+# allow writing of acme.json
+#ReadWritePaths=/etc/traefik/acme.json
+# depending on log and entrypoint configuration, you may need to allow writing to other paths, too
+
+# limit number of processes in this unit
+#LimitNPROC=1
 
 [Install]
 WantedBy=multi-user.target

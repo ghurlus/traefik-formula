@@ -1,0 +1,13 @@
+/var/log/traefik/* {
+    weekly
+    missingok
+    rotate 8
+    create {{ mode }} {{ owner }} {{ group }}
+    su {{ user }} {{ group }}
+    compress
+    delaycompress
+    notifempty
+    postrotate
+        systemctl -q is-active traefik && systemctl kill --signal=SIGUSR1 traefik
+    endscript
+}

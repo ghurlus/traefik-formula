@@ -1,13 +1,11 @@
-{% import_yaml slspath + '/defaults.yaml' as defaults %}
+{% import_yaml "traefik/defaults.yaml" as defaults %}
+{% import_yaml "traefik/osfamilymap.yaml" as osfamilymap %}
 
-{% set traefik = salt['pillar.get']('traefik', default=defaults.traefik, merge=True) %}
-
-{## Add any overrides based on CPU architecture ##}
-{% set traefik = salt['grains.filter_by']({
-        'x86_64': {
-            "arch": 'amd64'
-        }
-    }
-    ,grain="cpuarch"
-    ,merge=traefik)
+{% set traefik = salt.grains.filter_by(
+    defaults,
+    merge=salt.grains.filter_by(
+      osfamilymap,
+      merge=salt.pillar.get('traefik', {}),
+    ),
+    default='traefik')
 %}
