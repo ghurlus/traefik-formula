@@ -1,0 +1,13 @@
+{% import_yaml slspath + '/defaults.yaml' as defaults %}
+
+{% set traefik = salt['pillar.get']('traefik', default=defaults.traefik, merge=True) %}
+
+{## Add any overrides based on CPU architecture ##}
+{% set traefik = salt['grains.filter_by']({
+        'x86_64': {
+            "arch": 'amd64'
+        }
+    }
+    ,grain="cpuarch"
+    ,merge=traefik)
+%}

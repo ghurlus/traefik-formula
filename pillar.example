@@ -1,0 +1,14 @@
+traefik:
+
+  version: 1.7.8
+  download_host: github.com
+
+  # Set user and group for Traefik running service
+  user: traefik
+  group: traefik
+
+  # target directory to store traefik binary and configuratoin
+  bindir: /usr/local/bin
+  configdir: /etc/traefik
+
+# vim: ft=yaml

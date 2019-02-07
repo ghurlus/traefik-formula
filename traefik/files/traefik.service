@@ -1,0 +1,14 @@
+{%- from "traefik/map.jinja" import traefik with context -%}
+[Unit]
+Description=Traefik reverse proxy
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Restart=on-failure
+ExecStart={{ traefik.bindir }}/traefik --configFile={{ traefik.configdir }}/traefik.toml
+User={{ traefik.user }}
+Group={{ traefik.group }}
+
+[Install]
+WantedBy=multi-user.target

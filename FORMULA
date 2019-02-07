@@ -1,0 +1,8 @@
+name: traefik
+os: Debian
+os_family: Debian
+version: 201902
+release: 1
+summary: Formula for installing and configuring Traefik
+description: Formula for installing and configuring Traefik
+top_level_dir: traefik
