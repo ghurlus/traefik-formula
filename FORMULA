@@ -3,6 +3,7 @@ os: Debian
 os_family: Debian
 version: 201902
 release: 1
+minimum_version: 2015.8
 summary: Formula for installing and configuring Traefik
 description: Formula for installing and configuring Traefik
 top_level_dir: traefik
